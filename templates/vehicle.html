@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block nav %}   
+  {{ super() }}
+{% endblock %}
+
+{% block navUnique %}
+            <li class="inactive"><a href="{{ url_for('index') }}"><i class="fa fa-home fa-lg"></i> Home</a></li>
+            <li class="inactive"><a href="{{ url_for('mobile') }}"><i class="fa fa-mobile fa-lg"></i> Mobile numbers</a></li>
+            <li class="inactive"><a href="{{ url_for('pincodes') }}"><i class="fa fa-envelope"></i> Pin codes</a></li>
+            <li class="inactive"><a href="{{ url_for('stdcodes') }}"><i class="fa fa-phone fa-lg"></i> STD codes</a></li>
+            <li class="active"><a href="{{ url_for('vehicle') }}"><i class="fa fa-car "></i> Vehicle</a></li> 
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container wb">
+    <div class="row centered">
+      <br><br>
+      <div class="col-sm-8 col-sm-offset-2">
+
+      <form action="{{ url_for('vehicle') }}" method="POST">
+    <form action="{{ url_for('mobile') }}" method="POST">
+    <div class="input-group">
+      
+      <span class="input-group-addon"><i class="fa fa-car fa-lg"></i></span>
+
+      <input type="text" class="form-control"  name="number" placeholder="AP36Q2907">
+      <span class="input-group-btn">
+        <button class="btn btn-success" type="submit">Search!</button> </span>
+      </form>
+      
+    </div><!-- /input-group -->
+    </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}{{ super() }}{% endblock %}  
+
+  
+

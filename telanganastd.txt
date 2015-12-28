@@ -1,0 +1,45 @@
+LocationState
+Adilabad
+Armur
+Bellampalli
+Bhainsa
+Bhongir
+Bodhan
+Gadwal
+Hyderabad east
+Hyderabad local
+Hyderabad west
+Jagtial
+Jangaon
+Kagaznagar
+Kamareddy
+Karimnagar
+Khammam
+Koratla
+Kothagudem
+Mahbubnagar
+Mancherial
+Mandamarri
+Manuguru
+Medak
+Metpalle
+Miryalaguda
+Nalgonda
+Narayanpet
+Nirmal
+Nizamabad
+Palwancha
+Ramagundam
+Sadasivpet
+Sangareddy
+Sathupally
+Secunderabad
+Siddipet
+Sircilla
+Suryapet
+Tanduru
+Vicarabad
+Wanaparthy
+Warangal
+Yellandu
+Zahirabad

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+
+{% block nav %}
+
+    {{ super() }}
+
+{% endblock %}
+        
+
+{% block navUnique %}
+            <li class="active"><a href="{{ url_for('index') }}"><i class="fa fa-home fa-lg"></i> Home</a></li>
+            <li class="inactive"><a href="{{ url_for('mobile') }}"><i class="fa fa-mobile fa-lg"></i> Mobile numbers</a></li>
+            <li class="inactive"><a href="{{ url_for('pincodes') }}"><i class="fa fa-envelope"></i> Pin codes</a></li>
+            <li class="inactive"><a href="{{ url_for('stdcodes') }}"><i class="fa fa-phone fa-lg"></i> STD codes</a></li>
+            <li class="inactive"><a href="{{ url_for('vehicle') }}"><i class="fa fa-car"></i> Vehicle</a></li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+{% endblock %}
+
+
+{% block body %}
+    
+    <div class="jumbotron">
+    <div class="container">
+    <div class="row centered">
+    <h1><span style="color: #B60F2E">Note:</span> <span style="color:  #480612"> This site is under construction.</span>
+    <h2>Welcome to<span style="color:#EB6709"> Numbers</span><span style="color:#18A84D"> India</span></h2>
+    </br>
+  	<p>Here you can find details about Mobile phone numbers, Vehicle numbers, STD codes etc.</p> 	
+</div>
+</div>
+</div>
+
+
+
+<div class="container">
+
+<div class="col-md-4">
+<div class="panel panel-success">
+  <div class="panel-heading"><i class="fa fa-mobile-phone">  Track mobile numbers</i></div>
+  <div class="panel-body">
+    <form action="{{ url_for('mobile') }}" method="POST">
+    <div class="input-group">
+      
+      <span class="input-group-addon"><i class="fa fa-mobile-phone fa-lg"></i></span>
+
+      <input type="text" class="form-control"  name="number" placeholder="9440028567">
+      <span class="input-group-btn">
+        <button class="btn btn-success" type="submit">Search!</button> </span>
+      </form>
+    </div><!-- /input-group -->
+  </div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="panel panel-success">
+  <div class="panel-heading"><i class="fa fa-envelope"> Track Pincodes</i></div>
+  <div class="panel-body">
+   <form action="{{ url_for('pincodes') }}" method="POST">
+    <div class="input-group">
+      
+      <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+
+      <input type="text" class="form-control"  name="area" placeholder="Delhi">
+      <span class="input-group-btn">
+        <button class="btn btn-success" type="submit">Search!</button> </span>
+      </form>
+      
+    </div><!-- /input-group -->
+  </div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="panel panel-primary">
+  <div class="panel-heading"><i class="fa fa-phone">  Find STD codes</i></div>
+  <div class="panel-body">
+    <form action="{{ url_for('stdcodes') }}" method="POST">
+    
+
+
+         <div class="input-group">
+      
+      <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+
+      <input type="text" class="form-control"  name="city" placeholder='Enter a city name like "Delhi"'>
+      <span class="input-group-btn">
+        <button class="btn btn-success" type="submit">Search!</button> </span>
+      </form>
+      
+    </div><!-- /input-group -->
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}	
+    
+
+{% block script %}
+{{ super() }}
+{% endblock %}  
+

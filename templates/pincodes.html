@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+
+{% block nav %}
+    
+    {{ super() }}
+  
+{% endblock %}
+
+
+
+{% block navUnique %}
+            <li class="inactive"><a href="{{ url_for('index') }}"><i class="fa fa-home fa-lg"></i> Home</a></li>
+            <li class="inactive"><a href="{{ url_for('mobile') }}"><i class="fa fa-mobile fa-lg"></i> Mobile numbers</a></li>
+            <li class="active"><a href="{{ url_for('pincodes') }}"><i class="fa fa-envelope"></i> Pin codes</a></li>
+            <li class="inactive"><a href="{{ url_for('stdcodes') }}"><i class="fa fa-phone fa-lg"></i> STD codes</a></li>
+            <li class="inactive"><a href="{{ url_for('vehicle') }}"><i class="fa fa-car "></i> Vehicle</a></li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+<div class="container wb">
+    <div class="row centered">
+      <div class="col-sm-8 col-sm-offset-2">
+      <h1>Search by number</h1>
+      <form action="{{ url_for('pincodes') }}" method="POST">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-envelope fa-lg"></i></span>
+      <input type="text" class="form-control"  name="pincode" placeholder="506007">
+      <span class="input-group-btn">
+        <button class="btn btn-success" type="submit">Search!</button> </span>
+      </form>
+      </span>
+      
+    </div><!-- /input-group -->
+    </div>
+    </div>
+   
+    <div class="row centered">
+      <div class="col-sm-8 col-sm-offset-2">
+      <h1>Search by area</h1>
+      <form action="{{ url_for('pincodes') }}" method="POST">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-envelope fa-lg"></i></span>
+      <input type="text" class="form-control"  name="area" placeholder="Hanamkonda">
+      <span class="input-group-btn">
+        <button class="btn btn-success" type="submit">Search!</button> </span>
+      </form>
+      </span>
+      
+    </div><!-- /input-group -->
+    </div>
+    </div>
+    
+     <div class="container wb">
+    <div class="row centered">
+    <div class="col-sm-8 col-sm-offset-2">    
+  {% if error %} 
+  <h1>{{ error }}</h1>    
+  {% endif %}
+   <h1>{{ pincode }}</h1> 
+   <h1>{{ officename }}</h1>
+   <h1>{{ taluk }}</h1>
+   <h1>{{ district }}</h1>
+   <h1>{{ state }}</h1>
+    <table class="table table-striped table-bordered">
+    
+    {% if area or bypincode %}
+    
+    <thead>
+        <tr>
+            <td><h4>Pincode</h4></td>
+            <td><h4>Office Name</h4></td>
+            <td><h4>Taluk</h4></td>
+            <td><h4>District</h4></td>
+            <td><h4>State</h4></td>
+        </tr>
+    </thead>
+    
+    <tbody>
+    {% for o in bypincode %}
+        <tr>
+            <td><h5>{{ o.pincode }}</h5></td>
+            <td><h5>{{ o.officename }}</h5></td>
+            <td><h5>{{ o.taluk }}</h5></td>
+            <td><h5>{{ o.district }}</h5></td>
+             <td><h5>{{ o.state }}</h5></td>
+        </tr>
+    {% endfor %}  
+    
+    
+    {% for o in byoffice %}
+        <tr>
+            <td><h5>{{ o.pincode }}</h5></td>
+            <td><h5>{{ o.officename }}</h5></td>
+            <td><h5>{{ o.taluk }}</h5></td>
+            <td><h5>{{ o.district }}</h5></td>
+             <td><h5>{{ o.state }}</h5></td>
+        </tr>
+    {% endfor %}  
+    {% for t in bytaluk %}
+        <tr>
+            <td><h5>{{ t.pincode }}</h5></td>
+            <td><h5>{{ t.officename }}</h5></td>
+            <td><h5>{{ t.taluk }}</h5></td>
+            <td><h5>{{ t.district }}</h5></td>
+             <td><h5>{{ t.state }}</h5></td>
+        </tr>
+    {% endfor %}     
+    {% endif %}
+    </tbody>
+    
+
+    </table>
+   
+
+    </div>
+    </div>
+    </div>
+    
+
+{% endblock %}
+
+
+
+{% block script %}
+
+    {{ super() }}
+
+{% endblock %}  
+
+
+
