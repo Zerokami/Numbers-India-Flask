@@ -143,7 +143,7 @@ def pincodes():
 
 def dnd_return(number,my_timeout):
     try:
-        r =requests.get("https://dndcheck.p.mashape.com/index.php?mobilenos={}".format(number), timeout =my_timeout,headers ={"X-Mashape-Key": "obqeZksomumshUE8EvVYIqvRXWNsp1waVYpjsnUOa3brsHCokK"})
+        r =requests.get("https://dndcheck.p.mashape.com/index.php?mobilenos={}".format(number), timeout =my_timeout,headers ={})
     except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as err:
         return "Error fetching DND info"
     else:
