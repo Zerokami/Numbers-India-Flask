@@ -80,42 +80,57 @@ def int_pin(code):
 	code = fmt_pin(code)
 	return int(code)
 
+def byPincode(pinCode):
+    pincode = int_pin(pinCode)
+    bypincode = pinCodes.query.filter(pinCodes.pincode == pincode).all()
+    return render_template('pincodes.html',
+                                bypincode = bypincode,                                      
+                                )
 
-@app.route('/find_pin_codes', methods=['POST','GET'])
-def pincodes():
-    if request.method == 'POST':  
-
-        if request.form.get("pincode", "") != "":
-            pincode = request.form['pincode']
-            pincode = int_pin(pincode)
-            bypincode = pinCodes.query.filter(pinCodes.pincode == 506001).all()
-            print(bypincode)
+def byArea(area):
+    if len(area)>3:
+        area = area.strip()
+        try:
+            byoffice = pinCodes.query.filter(pinCodes.officename.startswith(area)).all()
+            print(byoffice)
+            bytaluk = pinCodes.query.filter(pinCodes.taluk.startswith(area)).all()
             return render_template('pincodes.html',
-                	                    bypincode = bypincode,                                      
-                                        )
-            
-        elif request.form.get("area", "") != "":
-            if len(request.form.get("area", ""))>3:
-                area = request.form['area']
-                area = area.strip()
-                try:
-                    byoffice = pinCodes.query.filter(pinCodes.officename.startswith(area)).all()
-                    print(byoffice)
-                    bytaluk = pinCodes.query.filter(pinCodes.taluk.startswith(area)).all()
-                    return render_template('pincodes.html',
                                             byoffice = byoffice,
                                             bytaluk = bytaluk,
                                             area = area,
                                            )
-                except Exception as e:
-                    return render_template('pincodes.html', 
+        except Exception as e:
+            return render_template('pincodes.html', 
                                             error = e
                                           ) 
-            else:
-                return render_template('pincodes.html', 
-                                        error = "Please enter an area with atleast 4 letters"
-                                        )
+    else:
+        return render_template('pincodes.html', 
+                                    error = "Please enter an area with atleast 4 letters"
+                                    )
         
+
+
+@app.route('/find_pin_codes', methods=['POST','GET'])
+def pincodes():
+    if request.method == 'POST':
+        if request.form.get("smartPinCodeForm", "") != "":
+            smartPinCode = request.form['smartPinCodeForm']
+            smartPinCode = fmt_pin(smartPinCode)
+            if smartPinCode.isdigit():
+                return(byPincode(smartPinCode))
+            else:
+                return(byArea(smartPinCode))
+
+
+        elif request.form.get("pincode", "") != "":
+            pinCode = request.form['pincode']
+            return(byPincode(pinCode))
+            
+        elif request.form.get("area", "") != "":
+            area = request.form.get("area", "")
+            return(byArea(area))
+            
+            
         else:
             return render_template('pincodes.html',
                                 error = "No value was entered!"                             
